@@ -2,12 +2,18 @@
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 Uses `pinterest/elixir-thrift` thrift parser and bindings for elixir,
+
 See: https://github.com/pinterest/elixir-thrift
+
 See: https://hexdocs.pm/thrift/readme.html#content
 
+
 Elixir docs: https://hexdocs.pm/elixir/Kernel.html
+
 Phoenix docs: https://hexdocs.pm/phoenix/Phoenix.html
+
 Plug docs: https://hexdocs.pm/plug/readme.html (used as part of Phoenix)
+
 
 ## Running an elixir service
 
@@ -230,10 +236,13 @@ Allowed parameters to the `DynamicThriftController` endpoint include
 
 Other parameters need to be added via `POST` or less general methods.
 
+
 Examples (make sure `SimpleApiKeyAuthPlug` is disabled unless you are requesting with headers):
 
 http://localhost:4000/***REMOVED***/search?last_name=%22Penven%22&first_name=%22Audrey%22
+
 http://localhost:4000/***REMOVED***/get_petition_targets
+
 http://localhost:4000/***REMOVED***/get_served_terms?limit=100
 
 
