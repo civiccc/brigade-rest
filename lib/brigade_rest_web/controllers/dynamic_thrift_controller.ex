@@ -39,7 +39,7 @@ defmodule BrigadeRestWeb.DynamicThriftController do
     )
 
     args = [
-      String.to_existing_atom(service_name),  # the global namespace for a given client, e.g. :***REMOVED***
+      String.to_existing_atom(service_name),  # the global namespace for a given client, e.g. :verification_service
       get_request_header(),  # request header struct
       request_struct  # request parameter struct
     ]

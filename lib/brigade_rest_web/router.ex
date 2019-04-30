@@ -16,7 +16,7 @@ defmodule BrigadeRestWeb.Router do
 
   scope "/", BrigadeRestWeb do
     pipe_through :browser # Use the default browser stack
-    get "/***REMOVED***/search", VerificationController, :verification_search
+    get "/verification_service/search", VerificationController, :verification_search
     get "/:service_name/:request_name", DynamicThriftController, :request
   end
 

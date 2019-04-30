@@ -10,18 +10,18 @@ defmodule BrigadeRest.Application do
     # NOTE: children are managed by a supervisor via the `strategy` defined below, they
     # are referenced by `name` in their configurations, so they can be used globally by
     # the endpoints via namespace. For instance the CivicDataService.Binary.Framed.Client can
-    # use the `:***REMOVED***` namespace instead of providing the `PID`, it will be
+    # use the `:civic_data_service` namespace instead of providing the `PID`, it will be
     # globally accessible.
 
     children = [
       # Start the endpoint when the application starts
       supervisor(BrigadeRestWeb.Endpoint, []),
-      ***REMOVED***(),
-      ***REMOVED***(),
-      ***REMOVED***(),
-      ***REMOVED***(),
+      civic_data_service(),
+      action_service(),
+      campaign_service(),
+      verification_service(),
 
-      # Add your own service client configuration here, see `***REMOVED***/0` for details
+      # Add your own service client configuration here, see `civic_data_service/0` for details
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -38,17 +38,17 @@ defmodule BrigadeRest.Application do
     :ok
   end
 
-  defp ***REMOVED***() do
-    config = Application.get_env(:brigade_rest, :***REMOVED***, [])
+  defp civic_data_service() do
+    config = Application.get_env(:brigade_rest, :civic_data_service, [])
     host = Keyword.fetch!(config, :host)
     port = Keyword.fetch!(config, :port)
 
-    assert_host_port_valid(:***REMOVED***, host, port)
+    assert_host_port_valid(:civic_data_service, host, port)
 
     opts =
       config
       |> Keyword.get(:options, [])
-      |> Keyword.put(:name, :***REMOVED***)
+      |> Keyword.put(:name, :civic_data_service)
 
     worker(
       Thrift.Generated.CivicDataService.Binary.Framed.Client,
@@ -56,17 +56,17 @@ defmodule BrigadeRest.Application do
     )
   end
 
-  defp ***REMOVED***() do
-    config = Application.get_env(:brigade_rest, :***REMOVED***, [])
+  defp action_service() do
+    config = Application.get_env(:brigade_rest, :action_service, [])
     host = Keyword.fetch!(config, :host)
     port = Keyword.fetch!(config, :port)
 
-    assert_host_port_valid(:***REMOVED***, host, port)
+    assert_host_port_valid(:action_service, host, port)
 
     opts =
       config
       |> Keyword.get(:options, [])
-      |> Keyword.put(:name, :***REMOVED***)
+      |> Keyword.put(:name, :action_service)
 
     worker(
       Thrift.Generated.ActionService.Binary.Framed.Client,
@@ -74,17 +74,17 @@ defmodule BrigadeRest.Application do
     )
   end
 
-  defp ***REMOVED***() do
-    config = Application.get_env(:brigade_rest, :***REMOVED***, [])
+  defp campaign_service() do
+    config = Application.get_env(:brigade_rest, :campaign_service, [])
     host = Keyword.fetch!(config, :host)
     port = Keyword.fetch!(config, :port)
 
-    assert_host_port_valid(:***REMOVED***, host, port)
+    assert_host_port_valid(:campaign_service, host, port)
 
     opts =
       config
       |> Keyword.get(:options, [])
-      |> Keyword.put(:name, :***REMOVED***)
+      |> Keyword.put(:name, :campaign_service)
 
     worker(
       Thrift.Generated.CampaignService.Binary.Framed.Client,
@@ -92,17 +92,17 @@ defmodule BrigadeRest.Application do
     )
   end
 
-  defp ***REMOVED***() do
-    config = Application.get_env(:brigade_rest, :***REMOVED***, [])
+  defp verification_service() do
+    config = Application.get_env(:brigade_rest, :verification_service, [])
     host = Keyword.fetch!(config, :host)
     port = Keyword.fetch!(config, :port)
 
-    assert_host_port_valid(:***REMOVED***, host, port)
+    assert_host_port_valid(:verification_service, host, port)
 
     opts =
       config
       |> Keyword.get(:options, [])
-      |> Keyword.put(:name, :***REMOVED***)
+      |> Keyword.put(:name, :verification_service)
 
     worker(
       Thrift.Generated.VerificationService.Binary.Framed.Client,

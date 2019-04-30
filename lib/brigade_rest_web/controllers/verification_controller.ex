@@ -19,7 +19,7 @@ defmodule BrigadeRestWeb.VerificationController do
 
     # Call the search method
     result = Thrift.Generated.VerificationService.Binary.Framed.Client.search!(
-      :***REMOVED***,
+      :verification_service,
       get_request_header(),
       thrift_params
     )

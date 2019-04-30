@@ -92,16 +92,16 @@ get "/:service_name/:request_name", DynamicThriftController, :request
 
 will take all page accesses matching any service name, and any request name and pass that to the
 `DynamicThriftController` module function `request`. That function will decide how to handle the
-incoming request. For example, a `curl http://localhost:4000/***REMOVED***/get_petition_targets`
+incoming request. For example, a `curl http://localhost:4000/action_service/get_petition_targets`
 would be making a call to the `ActionService` client, and calling the `get_petition_targets` method.
 
 Note that the verification service has its own route that supersedes the above route,
 
 ```
-get "/***REMOVED***/search", VerificationController, :search
+get "/verification_service/search", VerificationController, :search
 ```
 
-Which will then direct all requests via `curl http://localhost:4000/***REMOVED***/search`
+Which will then direct all requests via `curl http://localhost:4000/verification_service/search`
 to the `VerificationController` module function `search`.
 
 
@@ -165,17 +165,17 @@ an http request is made. By passing the `name` parameter, we can replace the usa
 with the `name`, e.g.
 
 ```
-{:ok, pid} = Thrift.Generated.CivicDataService.Binary.Framed.Client.start_link("***REMOVED***", 11064)
+{:ok, pid} = Thrift.Generated.CivicDataService.Binary.Framed.Client.start_link("mesos.brigade-rc.zone", 11064)
 result = Thrift.Generated.CivicDataService.Binary.Framed.Client.get_served_terms(pid, ...)
 
 # But inside the http handler, we don't don't want to keep track of that `pid` - it may die
 # and be restarted by the supervisor! So instead, we want to reference it by namespace, using `name`
 
 # The `application.ex` does this when it creates the `workers`
-Thrift.Generated.CivicDataService.Binary.Framed.Client.start_link("***REMOVED***", 11064, name: :***REMOVED***)
+Thrift.Generated.CivicDataService.Binary.Framed.Client.start_link("mesos.brigade-rc.zone", 11064, name: :civic_data_service)
 
 # Now inside the http handler we can simply call to the client by `name`
-result = Thrift.Generated.CivicDataService.Binary.Framed.Client(:***REMOVED***, ...)
+result = Thrift.Generated.CivicDataService.Binary.Framed.Client(:civic_data_service, ...)
 ```
 
 ### Authentication/Authorization
@@ -220,12 +220,12 @@ and request the page again - just don't forget to uncomment it again.
 
 You can access the APIs through restful urls
 
-`/:service_name/:request_name` - maps to a service you name like `***REMOVED***` and a method
-on that service like `get_petition_targets`, e.g. `GET /***REMOVED***/get_petition_targets`
+`/:service_name/:request_name` - maps to a service you name like `action_service` and a method
+on that service like `get_petition_targets`, e.g. `GET /action_service/get_petition_targets`
 
 You can also pass parameters as get parameters like
 
-`GET /***REMOVED***/search?last_name="Cumpson"&first_name="Jonathan"`
+`GET /verification_service/search?last_name="Cumpson"&first_name="Jonathan"`
 
 Allowed parameters to the `DynamicThriftController` endpoint include
  - `limit` the number of results to allow, default is `10`
@@ -239,11 +239,11 @@ Other parameters need to be added via `POST` or less general methods.
 
 Examples (make sure `SimpleApiKeyAuthPlug` is disabled unless you are requesting with headers):
 
-http://localhost:4000/***REMOVED***/search?last_name=%22Penven%22&first_name=%22Audrey%22
+http://localhost:4000/verification_service/search?last_name=%22Penven%22&first_name=%22Audrey%22
 
-http://localhost:4000/***REMOVED***/get_petition_targets
+http://localhost:4000/action_service/get_petition_targets
 
-http://localhost:4000/***REMOVED***/get_served_terms?limit=100
+http://localhost:4000/civic_data_service/get_served_terms?limit=100
 
 
 ## Still stuck?

@@ -22,27 +22,15 @@ config :brigade_rest, BrigadeRestWeb.Endpoint,
     # "ds8v57kheeod+cLXz7HeTOdfjitu9xjruAf4rF9DjjzcqmOMZdeP+k7bVN0vQGMX"
   ]
 
-# The config namespaces (:brigade_rest, :***REMOVED***), ... etc are just arbirtary namespaces
+# The config namespaces (:brigade_rest, :thrift_service), ... etc are just arbirtary namespaces
 # created to contain information about the thrift servers that the clients will be able to
 # connect to. Since the ports ought to remain the same they are included in the `config.exs`
 # and the `host` is provided as the `staging` defaults. The `prod.exs` config file contains the
 # production hosts for the thrift services. To enable the production values, run the service
 # with `MIX_ENV=prod`
-config :brigade_rest, :***REMOVED***,
-  host: "***REMOVED***",
-  port: 11057
-
-config :brigade_rest, :***REMOVED***,
-  host: "***REMOVED***",
-  port: 11046
-
-config :brigade_rest, :***REMOVED***,
-  host: "***REMOVED***",
-  port: 11044
-
-config :brigade_rest, :***REMOVED***,
-  host: "***REMOVED***",
-  port: ***REMOVED***
+config :brigade_rest, :thrift_service,
+  host: "localhost",
+  port: 9095
 
 # Configures Elixir's Logger
 config :logger, :console,

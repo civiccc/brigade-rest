@@ -22,18 +22,6 @@ config :brigade_rest, BrigadeRestWeb.Endpoint,
 
   # cache_static_manifest: "priv/static/cache_manifest.json"
 
-config :brigade_rest, :***REMOVED***,
-***REMOVED***
-
-config :brigade_rest, :***REMOVED***,
-***REMOVED***
-
-config :brigade_rest, :***REMOVED***,
-***REMOVED***
-
-config :brigade_rest, :***REMOVED***,
-***REMOVED***
-
 # Do not print debug messages in production
 config :logger, level: :info
 
