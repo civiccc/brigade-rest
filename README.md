@@ -86,8 +86,8 @@ get "/:service_name/:request_name", DynamicThriftController, :request
 
 will take all page accesses matching any service name, and any request name and pass that to the
 `DynamicThriftController` module function `request`. That function will decide how to handle the
-incoming request. For example, a `curl http://localhost:4000/action_service/get_petition_targets`
-would be making a call to the `ActionService` client, and calling the `get_petition_targets` method.
+incoming request. For example, a `curl http://localhost:4000/voter-verifier/search`
+would be making a call to the `VoterVerifier` client, and calling the `search` method.
 
 Note that the voter-verifier has its own route that supersedes the above route,
 
@@ -95,7 +95,7 @@ Note that the voter-verifier has its own route that supersedes the above route,
 get "/voter-verifier/search", VerificationController, :search
 ```
 
-Which will then direct all requests via `curl http://localhost:4000/verification_service/search`
+Which will then direct all requests via `curl http://localhost:4000/voter-verifier/search`
 to the `VerificationController` module function `search`.
 
 
