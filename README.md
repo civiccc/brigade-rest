@@ -89,7 +89,7 @@ will take all page accesses matching any service name, and any request name and 
 incoming request. For example, a `curl http://localhost:4000/action_service/get_petition_targets`
 would be making a call to the `ActionService` client, and calling the `get_petition_targets` method.
 
-Note that the verification service has its own route that supersedes the above route,
+Note that the voter-verifier has its own route that supersedes the above route,
 
 ```
 get "/voter-verifier/search", VerificationController, :search
@@ -214,8 +214,8 @@ and request the page again - just don't forget to uncomment it again.
 
 You can access the APIs through restful urls
 
-`/:service_name/:request_name` - maps to a service you name like `action_service` and a method
-on that service like `get_petition_targets`, e.g. `GET /action_service/get_petition_targets`
+`/:service_name/:request_name` - maps to a service you name like `voter-verifier` and a method
+on that service like `search`, e.g. `GET /voter-verifier/search`
 
 You can also pass parameters as get parameters like
 
