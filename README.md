@@ -239,16 +239,7 @@ Other parameters need to be added via `POST` or less general methods.
 
 Examples (make sure `SimpleApiKeyAuthPlug` is disabled unless you are requesting with headers):
 
-http://localhost:4000/verification_service/search?last_name=%22Penven%22&first_name=%22Audrey%22
-
-http://localhost:4000/action_service/get_petition_targets
-
-http://localhost:4000/civic_data_service/get_served_terms?limit=100
-
-
-## Still stuck?
-
-Call ***REMOVED*** and offer to exchange beer for code :)  (JD)
+http://localhost:4000/voter-verifier/search?last_name=%22Smith%22&first_name=%22Jane%22
 
 
 ## Learn more
