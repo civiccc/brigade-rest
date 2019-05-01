@@ -28,12 +28,6 @@ Install the dependencies for the project
 
 `mix deps.get`
 
-
-Checkout `brigade/thrift-shop` beside this repository
-
-`cd .. && gerrit clone thrift-shop && cd -`
-
-
 ### Development
 
 Run the code as usual with `mix phx.server`.
